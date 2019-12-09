@@ -35,6 +35,8 @@ export class SearchComponent implements OnInit {
     ).subscribe((res: Array<User>) => {
       console.log(res);
       this.result.emit(res);
+    }, (err) => {
+      console.error(err);      
     });
   }
 
