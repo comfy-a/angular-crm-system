@@ -35,4 +35,19 @@ export class UserService {
       }
     );
   }
+
+  public userPost(name: string, age: number, gender: string): Observable<any> {
+
+    let params: User = {
+      name: name,
+      age: age,
+      gender: gender
+    };
+
+    return this.httpClient.post<any>(`${this.basePath}/create`,
+      {
+        params: params
+      }
+    );
+  }
 }

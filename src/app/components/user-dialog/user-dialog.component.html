@@ -24,9 +24,10 @@
         <mat-error *ngIf="gender.hasError('required')">
             Gender is <strong>required</strong>
         </mat-error>
-    </mat-form-field>
+    </mat-form-field>    
 </form>
 
 <div class="text-center">
-    <button mat-raised-button color="primary" class="last" (click)="addUser();">저장</button>
+    <button mat-raised-button (click)="cancel();">취소</button>
+    <button mat-raised-button color="primary" class="last" (click)="save();">저장</button>
 </div>

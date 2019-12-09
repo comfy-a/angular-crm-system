@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { User } from './model/user';
 import { UserDialogComponent } from './components/user-dialog/user-dialog.component';
+import { SearchComponent } from './components/search/search.component';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,7 @@ import { UserDialogComponent } from './components/user-dialog/user-dialog.compon
 })
 export class AppComponent implements OnInit {
 
+  @ViewChild(SearchComponent, { static: true }) searchComponent: SearchComponent;
   title = 'ANGULAR-CRM-SYSTEM';
   users: Array<User>;
   selectedUser: User;
@@ -36,31 +38,22 @@ export class AppComponent implements OnInit {
     this.showDetail = false;
   }
 
-  userListOutputResult(user:User) {
+  userListOutputResult(user: User) {
     this.showDetail = true;
     this.selectedUser = user;
   }
-  
+
   addUser() {
-    this.dialog.open(UserDialogComponent);
+    this.dialog.open(UserDialogComponent).afterClosed().subscribe((res: boolean) => {
+      if (res) {
+        this.searchComponent.search();
+      }
+    });
   }
+
 
   updateUser() {
     // this.dataSource.data = UPDATE_DATA;
   }
+
 }
-
-// const DATA: User[] = [
-//   { id: 1, name: 'test1', age: 31, gender: '남자' },
-//   { id: 2, name: 'test2', age: 32, gender: '여자' },
-//   { id: 3, name: 'test3', age: 33, gender: '여자' },
-//   { id: 4, name: 'test4', age: 34, gender: '남자' },
-//   { id: 5, name: 'test5', age: 35, gender: '남자' }
-// ];
-
-// const UPDATE_DATA: User[] = [
-//   { id: 1, name: 'test1111', age: 31, gender: '남자' },
-//   { id: 2, name: 'test2', age: 32, gender: '여자' },
-//   { id: 3, name: 'test3', age: 33, gender: '여자' },
-//   { id: 4, name: 'test4', age: 34, gender: '남자' },
-// ];
