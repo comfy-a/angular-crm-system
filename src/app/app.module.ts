@@ -21,13 +21,15 @@ import { MatSelectModule } from '@angular/material/select';
 import { SearchComponent } from './components/search/search.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UserDialogComponent } from './components/user-dialog/user-dialog.component';
+import { UserDetailComponent } from './components/user-detail/user-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchComponent,
     UserListComponent,
-    UserDialogComponent
+    UserDialogComponent,
+    UserDetailComponent
   ],
   imports: [
     BrowserModule,
