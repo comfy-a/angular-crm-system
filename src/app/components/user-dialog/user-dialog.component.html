@@ -1,0 +1,32 @@
+<h4>사용자 추가</h4>
+
+<form [formGroup]="form" autocomplete="off">
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="name" formControlName="name">
+        <mat-error *ngIf="name.hasError('required')">
+            Name is <strong>required</strong>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="age" formControlName="age">
+        <mat-error *ngIf="age.hasError('required')">
+            Age is <strong>required</strong>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>gender</mat-label>
+        <mat-select formControlName="gender">
+            <mat-option value="남자">남자</mat-option>
+            <mat-option value="여자">여자</mat-option>
+        </mat-select>
+        <mat-error *ngIf="gender.hasError('required')">
+            Gender is <strong>required</strong>
+        </mat-error>
+    </mat-form-field>
+</form>
+
+<div class="text-center">
+    <button mat-raised-button color="primary" class="last" (click)="addUser();">저장</button>
+</div>

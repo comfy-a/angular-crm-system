@@ -19,8 +19,8 @@ export class UserDialogComponent implements OnInit {
   form: FormGroup;
 
   constructor(
-    public dialogRef: MatDialogRef<UserDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    public dialogRef: MatDialogRef<UserDialogComponent>,
     private fb: FormBuilder
   ) { }
 
@@ -32,11 +32,12 @@ export class UserDialogComponent implements OnInit {
     });
   }
 
-  onNoClick() {
-    this.dialogRef.close();
-  }
+  get name() { return this.form.get('name') }
+  get age() { return this.form.get('age') }
+  get gender() { return this.form.get('gender') }
 
   addUser() {
+    
 
   }
 

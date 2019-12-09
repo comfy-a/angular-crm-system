@@ -45,7 +45,7 @@ button {
 }
 
 button.last {
-  margin-right: 0px;
+  margin-right: 0px !important;
 }
 
 .content {
@@ -54,11 +54,6 @@ button.last {
 
 .result {
   margin-top: 15px;
-}
-
-.add-user-col {
-  text-align: right;
-  margin-bottom: 15px;
 }
 
 .mat-form-field {
