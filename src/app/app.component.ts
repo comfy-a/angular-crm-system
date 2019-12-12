@@ -51,9 +51,10 @@ export class AppComponent implements OnInit {
     });
   }
 
-
-  updateUser() {
-    // this.dataSource.data = UPDATE_DATA;
+  outputUserDetailResult(data: boolean) {
+    if(data) {
+      this.searchComponent.search();
+    }
   }
 
 }

@@ -44,7 +44,7 @@
 
       <div *ngIf="showDetail">
 
-        <app-user-detail [selectedUser]="selectedUser"></app-user-detail>
+        <app-user-detail [selectedUser]="selectedUser" (result)="outputUserDetailResult($event)"></app-user-detail>
 
       </div>
 

@@ -50,4 +50,24 @@ export class UserService {
       }
     );
   }
+
+  public userPut(id: number, name: string, age: number, gender: string): Observable<any> {
+
+    let params: User = {
+      id: id,
+      name: name,
+      age: age,
+      gender: gender
+    };
+
+    return this.httpClient.put<any>(`${this.basePath}/update`,
+      {
+        params: params
+      }
+    );
+  }
+
+  public userDelete(id: number): Observable<any> {
+    return this.httpClient.delete<any>(`${this.basePath}/delete/${id}`);
+  }
 }
