@@ -13,7 +13,6 @@ import { SearchComponent } from './components/search/search.component';
 export class AppComponent implements OnInit {
 
   @ViewChild(SearchComponent, { static: true }) searchComponent: SearchComponent;
-  title = 'ANGULAR-CRM-SYSTEM';
   users: Array<User>;
   selectedUser: User;
   showDetail: boolean;

@@ -22,6 +22,7 @@ import { SearchComponent } from './components/search/search.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UserDialogComponent } from './components/user-dialog/user-dialog.component';
 import { UserDetailComponent } from './components/user-detail/user-detail.component';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { UserDetailComponent } from './components/user-detail/user-detail.compon
     SearchComponent,
     UserListComponent,
     UserDialogComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,

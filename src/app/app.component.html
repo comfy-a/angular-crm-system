@@ -1,26 +1,4 @@
-<mat-toolbar color="primary">
-
-  <mat-toolbar-row>
-
-    <span>{{title}}</span>
-
-    <span class="example-spacer"></span>
-
-    <mat-icon class="example-icon" [matMenuTriggerFor]="menu" aria-hidden="false" aria-label="Example delete icon">
-      account_circle
-    </mat-icon>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item>
-        <span>내 정보 설정</span>
-      </button>
-      <button mat-menu-item>
-        <span>로그아웃</span>
-      </button>
-    </mat-menu>
-
-  </mat-toolbar-row>
-
-</mat-toolbar>
+<app-toolbar></app-toolbar>
 
 <div class="content">
 
@@ -42,7 +20,7 @@
 
       </div>
 
-      <div *ngIf="showDetail">
+      <div class="col-lg-6" *ngIf="showDetail">
 
         <app-user-detail [selectedUser]="selectedUser" (result)="outputUserDetailResult($event)"></app-user-detail>
 
