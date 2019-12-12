@@ -35,6 +35,7 @@ export class UserListComponent implements OnInit, OnChanges {
   setUserTable(users: Array<User>) {
     this.dataSource.data = users;
     this.dataSource.paginator = this.paginator;
+    this.dataSource.paginator.firstPage();
   }
 
   selectRow(user: User) {
