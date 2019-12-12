@@ -18,6 +18,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 
+import { HomePageComponent } from './components/home-page/home-page.component';
+import { ManagePageComponent } from './components/manage-page/manage-page.component';
 import { SearchComponent } from './components/search/search.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UserDialogComponent } from './components/user-dialog/user-dialog.component';
@@ -27,6 +29,8 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 @NgModule({
   declarations: [
     AppComponent,
+    HomePageComponent,
+    ManagePageComponent,
     SearchComponent,
     UserListComponent,
     UserDialogComponent,

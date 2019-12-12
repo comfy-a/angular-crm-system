@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ToolbarComponent implements OnInit {
 
-  title = 'ANGULAR-CRM-SYSTEM';
+  title = 'Angular CRM System';
 
   constructor() { }
 

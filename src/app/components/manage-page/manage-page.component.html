@@ -1,0 +1,21 @@
+<div class="content">
+
+    <app-search (result)="searchOutputResult($event);"></app-search>
+
+    <div class="text-right">
+        <button mat-raised-button color="primary" class="last" (click)="addUser();">사용자추가</button>
+    </div>
+
+    <div class="result" *ngIf="users">
+        <div class="row">
+            <div [ngClass]="showDetail ? 'col-lg-6' : 'col-lg-12'">
+                <app-user-list [users]="users" (result)="userListOutputResult($event);"></app-user-list>
+            </div>
+
+            <div class="col-lg-6" *ngIf="showDetail">
+                <app-user-detail [selectedUser]="selectedUser" (result)="userDetailOutputResult($event)"></app-user-detail>
+            </div>
+        </div>
+    </div>
+
+</div>
