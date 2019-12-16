@@ -47,7 +47,7 @@ export class UserDialogComponent implements OnInit {
 
     this.service.userPost(
       this.name.value,
-      this.age.value,
+      Number(this.age.value),
       this.gender.value
     ).subscribe((res: any) => {
       if (res == "success") {

@@ -30,10 +30,9 @@ export class SearchComponent implements OnInit {
   usersGet() {
     this.service.usersGet(
       this.name.value,
-      this.age.value,
+      Number(this.age.value),
       this.gender.value
     ).subscribe((res: Array<User>) => {
-      console.log(res);
       this.result.emit(res);
     }, (err) => {
       console.error(err);      

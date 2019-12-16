@@ -8,7 +8,7 @@ import { User } from '../model/user';
 })
 export class UserService {
 
-  protected basePath = 'http://127.0.0.1:5000';
+  protected basePath = 'http://127.0.0.1:8080/v2';
   public defaultHeaders = new HttpHeaders();
 
   constructor(
@@ -29,7 +29,7 @@ export class UserService {
       queryParameters = queryParameters.set('gender', <any>gender);
     }
 
-    return this.httpClient.get<Array<User>>(`${this.basePath}/select`,
+    return this.httpClient.get<Array<User>>(`${this.basePath}/user`,
       {
         params: queryParameters
       }
@@ -38,36 +38,28 @@ export class UserService {
 
   public userPost(name: string, age: number, gender: string): Observable<any> {
 
-    let params: User = {
+    const user: User = {
       name: name,
       age: age,
       gender: gender
     };
 
-    return this.httpClient.post<any>(`${this.basePath}/create`,
-      {
-        params: params
-      }
-    );
+    return this.httpClient.post<any>(`${this.basePath}/user`, user);
   }
 
   public userPut(id: number, name: string, age: number, gender: string): Observable<any> {
 
-    let params: User = {
+    const user: User = {
       id: id,
       name: name,
       age: age,
       gender: gender
     };
 
-    return this.httpClient.put<any>(`${this.basePath}/update`,
-      {
-        params: params
-      }
-    );
+    return this.httpClient.put<any>(`${this.basePath}/user`, user);
   }
 
   public userDelete(id: number): Observable<any> {
-    return this.httpClient.delete<any>(`${this.basePath}/delete/${id}`);
+    return this.httpClient.delete<any>(`${this.basePath}/user/${id}`);
   }
 }

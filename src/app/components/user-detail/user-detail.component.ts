@@ -55,7 +55,7 @@ export class UserDetailComponent implements OnInit, OnChanges {
     this.service.userPut(
       this.selectedUser.id,
       this.name.value,
-      this.age.value,
+      Number(this.age.value),
       this.gender.value
     ).subscribe((res: any) => {
       if (res == "success") {
