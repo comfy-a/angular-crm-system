@@ -20,13 +20,13 @@ export class UserService {
     let queryParameters = new HttpParams();
 
     if (name !== undefined && name !== null) {
-      queryParameters = queryParameters.set('name', <any>name);
+      queryParameters = queryParameters.set('name',  name as any);
     }
-    if (age != undefined && age !== null) {
-      queryParameters = queryParameters.set('age', <any>age);
+    if (age !== undefined && age !== null) {
+      queryParameters = queryParameters.set('age',  age as any);
     }
-    if (gender != undefined && gender !== null) {
-      queryParameters = queryParameters.set('gender', <any>gender);
+    if (gender !== undefined && gender !== null) {
+      queryParameters = queryParameters.set('gender',  gender as any);
     }
 
     return this.httpClient.get<Array<User>>(`${this.basePath}/user`,
@@ -36,12 +36,15 @@ export class UserService {
     );
   }
 
-  public userPost(name: string, age: number, gender: string): Observable<any> {
+  public userPost(name: string, age: number, gender: string, zipNo: string, baseAddr: string, detailAddr: string): Observable<any> {
 
     const user: User = {
-      name: name,
-      age: age,
-      gender: gender
+      name,
+      age,
+      gender,
+      zipNo,
+      baseAddr,
+      detailAddr
     };
 
     return this.httpClient.post<any>(`${this.basePath}/user`, user);
@@ -50,10 +53,10 @@ export class UserService {
   public userPut(id: number, name: string, age: number, gender: string): Observable<any> {
 
     const user: User = {
-      id: id,
-      name: name,
-      age: age,
-      gender: gender
+      id,
+      name,
+      age,
+      gender
     };
 
     return this.httpClient.put<any>(`${this.basePath}/user`, user);

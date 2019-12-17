@@ -3,4 +3,7 @@ export interface User {
     name?: string;
     age?: number;
     gender?: string;
+    zipNo?: string;
+    baseAddr?: string;
+    detailAddr?: string;
 }

@@ -27,7 +27,7 @@ import { UserDetailComponent } from './components/user-detail/user-detail.compon
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { AlertDialogComponent } from './share/components/alert-dialog/alert-dialog.component';
 import { ConfirmDialogComponent } from './share/components/confirm-dialog/confirm-dialog.component';
-import { AddrComponent } from './share/components/addr/addr.component';
+import { DaumAddressComponent } from './share/components/daum-address/daum-address.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +41,7 @@ import { AddrComponent } from './share/components/addr/addr.component';
     ToolbarComponent,
     AlertDialogComponent,
     ConfirmDialogComponent,
-    AddrComponent
+    DaumAddressComponent
   ],
   imports: [
     BrowserModule,

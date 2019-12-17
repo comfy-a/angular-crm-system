@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/service/user.service';
 import { AlertDialogComponent } from 'src/app/share/components/alert-dialog/alert-dialog.component';
 import { ConfirmDialogComponent } from 'src/app/share/components/confirm-dialog/confirm-dialog.component';
@@ -30,23 +30,37 @@ export class UserDialogComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.dialogRef.updateSize("800px");
+
     this.form = this.fb.group({
       name: ['', Validators.required],
       age: ['', Validators.required],
-      gender: ['남자', Validators.required]
+      gender: ['남자', Validators.required],
+      zipNo: '',
+      baseAddr: '',
+      detailAddr: ''
     });
   }
 
   get name() { return this.form.get('name'); }
   get age() { return this.form.get('age'); }
   get gender() { return this.form.get('gender'); }
+  get zipNo() { return this.form.get('zipNo'); }
+  get baseAddr() { return this.form.get('baseAddr'); }
+  get detailAddr() { return this.form.get('detailAddr'); }
+
+  setAddr(addr: any) {
+    this.zipNo.setValue(addr.zipNo);
+    this.baseAddr.setValue(addr.baseAddr);
+    this.detailAddr.setValue('');
+  }
 
   cancel() {
     this.dialogRef.close();
   }
 
   save() {
-    if (!this.validate()) return;
+    if (!this.validate()) { return; }
 
     this.dialog.open(ConfirmDialogComponent, {
       data: {
@@ -58,7 +72,6 @@ export class UserDialogComponent implements OnInit {
         this.userPost();
       }
     });
-
   }
 
   validate() {
@@ -79,9 +92,12 @@ export class UserDialogComponent implements OnInit {
     this.service.userPost(
       this.name.value,
       Number(this.age.value),
-      this.gender.value
+      this.gender.value,
+      this.zipNo.value,
+      this.baseAddr.value,
+      this.detailAddr.value
     ).subscribe((res: any) => {
-      if (res == "success") {
+      if (res === "success") {
         this.dialog.open(AlertDialogComponent, {
           data: {
             title: "사용자 등록",
