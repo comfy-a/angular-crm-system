@@ -25,6 +25,9 @@ import { UserListComponent } from './components/user-list/user-list.component';
 import { UserDialogComponent } from './components/user-dialog/user-dialog.component';
 import { UserDetailComponent } from './components/user-detail/user-detail.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { AlertDialogComponent } from './share/components/alert-dialog/alert-dialog.component';
+import { ConfirmDialogComponent } from './share/components/confirm-dialog/confirm-dialog.component';
+import { AddrComponent } from './share/components/addr/addr.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,10 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     UserListComponent,
     UserDialogComponent,
     UserDetailComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    AlertDialogComponent,
+    ConfirmDialogComponent,
+    AddrComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +61,9 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     MatSelectModule
   ],
   entryComponents: [
-    UserDialogComponent
+    UserDialogComponent,
+    AlertDialogComponent,
+    ConfirmDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

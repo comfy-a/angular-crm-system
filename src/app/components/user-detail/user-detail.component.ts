@@ -2,6 +2,9 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitte
 import { User } from 'src/app/model/user';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from 'src/app/service/user.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AlertDialogComponent } from 'src/app/share/components/alert-dialog/alert-dialog.component';
+import { ConfirmDialogComponent } from 'src/app/share/components/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-user-detail',
@@ -16,7 +19,8 @@ export class UserDetailComponent implements OnInit, OnChanges {
 
   constructor(
     private fb: FormBuilder,
-    private service: UserService
+    private service: UserService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -52,38 +56,29 @@ export class UserDetailComponent implements OnInit, OnChanges {
   update() {
     if (!this.validate()) return;
 
-    this.service.userPut(
-      this.selectedUser.id,
-      this.name.value,
-      Number(this.age.value),
-      this.gender.value
-    ).subscribe((res: any) => {
-      if (res == "success") {
-        alert("수정되었습니다.");
-        this.result.emit(true);
-      } else {
-        alert("실패");
-        this.result.emit(false);
-      }      
-    }, (err) => {
-      console.error(err);
+    this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: "사용자 수정",
+        message: "사용자 정보를 수정하시겠습니까?"
+      }
+    }).afterClosed().subscribe((res: boolean) => {
+      if (res) {
+        this.userPut();
+      }
     });
   }
 
   delete() {
-    this.service.userDelete(
-      this.selectedUser.id
-    ).subscribe((res: any) => {
-      if (res == "success") {
-        alert("삭제되었습니다.");
-        this.result.emit(true);
-      } else {
-        alert("실패");
-        this.result.emit(false);
-      }      
-    }, (err) => {
-      console.error(err);
-    });    
+    this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: "사용자 삭제",
+        message: "사용자 정보를 삭제하시겠습니까?"
+      }
+    }).afterClosed().subscribe((res: boolean) => {
+      if (res) {
+        this.userDelete();
+      }
+    });
   }
 
   validate() {
@@ -98,6 +93,65 @@ export class UserDetailComponent implements OnInit, OnChanges {
     }
 
     return true;
+  }
+
+  userPut() {
+    this.service.userPut(
+      this.selectedUser.id,
+      this.name.value,
+      Number(this.age.value),
+      this.gender.value
+    ).subscribe((res: any) => {
+      if (res == "success") {
+        this.dialog.open(AlertDialogComponent, {
+          data: {
+            title: "사용자 수정",
+            message: "수정되었습니다."
+          }
+        }).afterClosed().subscribe(() => {
+          this.result.emit(true);
+        });
+      } else {
+        this.dialog.open(AlertDialogComponent, {
+          data: {
+            title: "사용자 수정",
+            message: "실패하였습니다."
+          }
+        }).afterClosed().subscribe(() => {
+          this.result.emit(false);
+        });
+      }
+    }, (err) => {
+      console.error(err);
+    });
+  }
+
+  userDelete() {
+    this.service.userDelete(
+      this.selectedUser.id
+    ).subscribe((res: any) => {
+      if (res == "success") {
+        this.dialog.open(AlertDialogComponent, {
+          data: {
+            title: "사용자 삭제",
+            message: "삭제되었습니다."
+          }
+        }).afterClosed().subscribe(() => {
+          this.result.emit(true);
+        });
+      } else {
+        this.dialog.open(AlertDialogComponent, {
+          data: {
+            title: "사용자 삭제",
+            message: "실패하였습니다."
+          }
+        }).afterClosed().subscribe(() => {
+          this.result.emit(false);
+        });
+      }
+    }, (err) => {
+      console.error(err);
+    });
   }
 
 }
