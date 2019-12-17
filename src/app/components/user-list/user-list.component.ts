@@ -16,7 +16,7 @@ export class UserListComponent implements OnInit, OnChanges {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   dataSource = new MatTableDataSource();
-  displayedColumns: string[] = ['id', 'name', 'age', 'gender'];
+  displayedColumns: string[] = ['id', 'name', 'age', 'gender', 'addr'];
   selectedRow: User;
 
   constructor() { }
@@ -41,6 +41,14 @@ export class UserListComponent implements OnInit, OnChanges {
   selectRow(user: User) {
     this.selectedRow = user;
     this.result.emit(user);
+  }
+
+  convertAddr(row: User) {
+    if (row.addr) {
+      return `${row.addr.base_addr ? row.addr.base_addr : ''} ${row.addr.detail_addr ? row.addr.detail_addr : ''}`;
+    }
+
+    return '';
   }
 
 }

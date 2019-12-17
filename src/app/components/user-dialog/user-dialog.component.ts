@@ -37,7 +37,7 @@ export class UserDialogComponent implements OnInit {
       age: ['', Validators.required],
       gender: ['남자', Validators.required],
       zipNo: '',
-      baseAddr: '',
+      baseAddr: [{value: '', disabled: true}],
       detailAddr: ''
     });
   }

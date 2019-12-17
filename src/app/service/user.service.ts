@@ -42,9 +42,11 @@ export class UserService {
       name,
       age,
       gender,
-      zipNo,
-      baseAddr,
-      detailAddr
+      addr: {
+        zip_no: zipNo,
+        base_addr: baseAddr,
+        detail_addr: detailAddr
+      }
     };
 
     return this.httpClient.post<any>(`${this.basePath}/user`, user);
