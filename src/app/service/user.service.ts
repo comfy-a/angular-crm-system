@@ -52,13 +52,18 @@ export class UserService {
     return this.httpClient.post<any>(`${this.basePath}/user`, user);
   }
 
-  public userPut(id: number, name: string, age: number, gender: string): Observable<any> {
+  public userPut(id: number, name: string, age: number, gender: string, zipNo: string, baseAddr: string, detailAddr: string): Observable<any> {
 
     const user: User = {
       id,
       name,
       age,
-      gender
+      gender,
+      addr: {
+        zip_no: zipNo,
+        base_addr: baseAddr,
+        detail_addr: detailAddr
+      }
     };
 
     return this.httpClient.put<any>(`${this.basePath}/user`, user);

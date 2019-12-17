@@ -5,26 +5,26 @@
   <div class="row">
 
     <div class="col-lg-4">
-      <mat-form-field class="example-full-width">
-        <input matInput placeholder="name" formControlName="name">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="이름" formControlName="name">
         <mat-error *ngIf="name.hasError('required')">
-          Name is <strong>required</strong>
+          <strong>필수항목입니다.</strong>
         </mat-error>
       </mat-form-field>
     </div>
 
     <div class="col-lg-4">
-      <mat-form-field class="example-full-width">
-        <input matInput placeholder="age" formControlName="age">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="나이" formControlName="age">
         <mat-error *ngIf="age.hasError('required')">
-          Age is <strong>required</strong>
+          <strong>필수항목입니다.</strong>
         </mat-error>
       </mat-form-field>
     </div>
 
     <div class="col-lg-4">
-      <mat-form-field>
-        <mat-label>gender</mat-label>
+      <mat-form-field class="full-width">
+        <mat-label>성별</mat-label>
         <mat-select formControlName="gender">
           <mat-option value="남자">남자</mat-option>
           <mat-option value="여자">여자</mat-option>

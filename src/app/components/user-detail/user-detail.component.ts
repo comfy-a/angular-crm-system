@@ -30,13 +30,19 @@ export class UserDetailComponent implements OnInit, OnChanges {
   get name() { return this.form.get('name'); }
   get age() { return this.form.get('age'); }
   get gender() { return this.form.get('gender'); }
+  get zipNo() { return this.form.get('zipNo'); }
+  get baseAddr() { return this.form.get('baseAddr'); }
+  get detailAddr() { return this.form.get('detailAddr'); }
 
   setForm(user: User) {
     if (!this.form) {
       this.form = this.fb.group({
         name: ['', Validators.required],
         age: ['', Validators.required],
-        gender: ['', Validators.required]
+        gender: ['', Validators.required],
+        zipNo: '',
+        baseAddr: [{value: '', disabled: true}],
+        detailAddr: ''
       });
     }
 
@@ -45,12 +51,24 @@ export class UserDetailComponent implements OnInit, OnChanges {
       age: user.age,
       gender: user.gender
     });
+
+    if(user.addr) {
+      this.zipNo.setValue(user.addr.zip_no ? user.addr.zip_no : '');
+      this.baseAddr.setValue(user.addr.base_addr ? user.addr.base_addr : '');
+      this.detailAddr.setValue(user.addr.detail_addr ? user.addr.detail_addr : '');
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.selectedUser) {
       this.setForm(changes.selectedUser.currentValue);
     }
+  }
+
+  setAddr(addr: any) {
+    this.zipNo.setValue(addr.zipNo);
+    this.baseAddr.setValue(addr.baseAddr);
+    this.detailAddr.setValue('');
   }
 
   update() {
@@ -102,7 +120,10 @@ export class UserDetailComponent implements OnInit, OnChanges {
       this.selectedUser.id,
       this.name.value,
       Number(this.age.value),
-      this.gender.value
+      this.gender.value,
+      this.zipNo.value,
+      this.baseAddr.value,
+      this.detailAddr.value
     ).subscribe((res: any) => {
       if (res === "success") {
         this.dialog.open(AlertDialogComponent, {
