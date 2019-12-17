@@ -60,7 +60,7 @@ export class UserDialogComponent implements OnInit {
   }
 
   save() {
-    if (!this.validate()) { return; }
+    if (!this.validate()) return;
 
     this.dialog.open(ConfirmDialogComponent, {
       data: {
@@ -82,6 +82,16 @@ export class UserDialogComponent implements OnInit {
         control.markAsTouched();
       });
 
+      return false;
+    }
+
+    if (isNaN(this.age.value)) {
+      this.dialog.open(AlertDialogComponent, {
+        data: {
+          title: "사용자 등록",
+          message: "나이 항목을 확인해주세요."
+        }
+      });
       return false;
     }
 

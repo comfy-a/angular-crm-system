@@ -112,6 +112,16 @@ export class UserDetailComponent implements OnInit, OnChanges {
       return false;
     }
 
+    if (isNaN(this.age.value)) {
+      this.dialog.open(AlertDialogComponent, {
+        data: {
+          title: "사용자 수정",
+          message: "나이 항목을 확인해주세요."
+        }
+      });
+      return false;
+    }
+
     return true;
   }
 
