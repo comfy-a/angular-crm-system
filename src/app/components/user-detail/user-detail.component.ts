@@ -15,7 +15,7 @@ export class UserDetailComponent implements OnInit, OnChanges {
 
   @Input() selectedUser: User;
   @Output() result: EventEmitter<boolean> = new EventEmitter<boolean>();
-  form: FormGroup
+  form: FormGroup;
 
   constructor(
     private fb: FormBuilder,
@@ -44,7 +44,7 @@ export class UserDetailComponent implements OnInit, OnChanges {
       name: user.name,
       age: user.age,
       gender: user.gender
-    })
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -54,7 +54,9 @@ export class UserDetailComponent implements OnInit, OnChanges {
   }
 
   update() {
-    if (!this.validate()) return;
+    if (!this.validate()) {
+      return;
+    }
 
     this.dialog.open(ConfirmDialogComponent, {
       data: {
@@ -102,7 +104,7 @@ export class UserDetailComponent implements OnInit, OnChanges {
       Number(this.age.value),
       this.gender.value
     ).subscribe((res: any) => {
-      if (res == "success") {
+      if (res === "success") {
         this.dialog.open(AlertDialogComponent, {
           data: {
             title: "사용자 수정",
@@ -130,7 +132,7 @@ export class UserDetailComponent implements OnInit, OnChanges {
     this.service.userDelete(
       this.selectedUser.id
     ).subscribe((res: any) => {
-      if (res == "success") {
+      if (res === "success") {
         this.dialog.open(AlertDialogComponent, {
           data: {
             title: "사용자 삭제",
